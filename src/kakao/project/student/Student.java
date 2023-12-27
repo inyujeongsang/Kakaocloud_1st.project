@@ -1,13 +1,13 @@
 package kakao.project.student;
 
-class Student {
+public class Student {
 
     private int ID;
     private String name;
     private String Sex;
     private int PresentTableNumber;
 
-    Student() {
+    public Student() {
         ID = 0;
         name = null;
         Sex = null;

@@ -1,12 +1,12 @@
 package kakao.project.gui;
 
-// Java AWT와 Swing 라이브러리를 임포트하여 GUI 구성 요소 사용
+// Java AWT�� Swing �씪�씠釉뚮윭由щ�� �엫�룷�듃�븯�뿬 GUI 援ъ꽦 �슂�냼 �궗�슜
 import java.awt.EventQueue;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-// JFrame, JPanel, JLabel 등 Swing 컴포넌트를 사용하기 위한 임포트
+// JFrame, JPanel, JLabel �벑 Swing 而댄룷�꼳�듃瑜� �궗�슜�븯湲� �쐞�븳 �엫�룷�듃
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,20 +16,22 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
-// 파일 입출력을 위한 java.io 패키지 임포트
+// �뙆�씪 �엯異쒕젰�쓣 �쐞�븳 java.io �뙣�궎吏� �엫�룷�듃
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-// ArrayList와 Scanner를 사용하기 위한 임포트
+// ArrayList�� Scanner瑜� �궗�슜�븯湲� �쐞�븳 �엫�룷�듃
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import kakao.project.student.*;
+
 public class Information extends JFrame {
 
-    // GUI 컴포넌트 선언
+    // GUI 而댄룷�꼳�듃 �꽑�뼵
     private JPanel contentPane;
     private JTextField StudnetID;
     private JTextField StudentName;
@@ -38,7 +40,7 @@ public class Information extends JFrame {
     JTextArea displayArea = new JTextArea();
     JScrollPane scrollPane = new JScrollPane(displayArea);
 
-    // 학생 정보를 저장하는 ArrayList 선언
+    // �븰�깮 �젙蹂대�� ���옣�븯�뒗 ArrayList �꽑�뼵
     ArrayList<Student> StudentArray = new ArrayList<Student>();
 
     /**
@@ -48,7 +50,7 @@ public class Information extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Test frame = new Test();
+                	Information frame = new Information();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -61,13 +63,13 @@ public class Information extends JFrame {
      * Create the frame.
      */
     public Information() {
-        // 파일에서 학생 데이터를 로드하는 메소드 호출
+        // �뙆�씪�뿉�꽌 �븰�깮 �뜲�씠�꽣瑜� 濡쒕뱶�븯�뒗 硫붿냼�뱶 �샇異�
         loadStudentData();
-        // 프레임의 기본 닫기 동작 설정
+        // �봽�젅�엫�쓽 湲곕낯 �떕湲� �룞�옉 �꽕�젙
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // 프레임의 위치와 크기 설정
+        // �봽�젅�엫�쓽 �쐞移섏� �겕湲� �꽕�젙
         setBounds(100, 100, 558, 426);
-        // 패널 초기화 및 설정
+        // �뙣�꼸 珥덇린�솕 諛� �꽕�젙
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
