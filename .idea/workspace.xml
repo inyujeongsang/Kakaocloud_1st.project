@@ -17,10 +17,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="main" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="injeong" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,12 +37,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1703663696" />
+                    <option name="branchName" value="injeong" />
+                    <option name="lastUsedInstant" value="1703775161" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="injeong" />
-                    <option name="lastUsedInstant" value="1703663679" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1703775149" />
                   </RecentBranch>
                 </list>
               </option>
