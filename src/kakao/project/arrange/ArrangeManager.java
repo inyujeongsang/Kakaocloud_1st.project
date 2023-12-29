@@ -2,12 +2,16 @@ package kakao.project.arrange;
 
 import kakao.project.student.Student;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.*;
 
-public class ArrangeManager {
+public class ArrangeManager implements SeatColor{
     private List<Arrange> seats;
     private List<Student> students;
     public static final int SEAT_NUMBER = 26;
+    public static final int CIRCLE_SIZE = 5;
+    
     public ArrangeManager(List<Student> students, int SEAT_NUMBER){
         this.students = students;
         this.seats = new ArrayList<>(SEAT_NUMBER);
@@ -38,6 +42,16 @@ public class ArrangeManager {
         for (int i = 0; i < remainStudents.size(); i++) {
             availableSeats.get(i).assignStudent(remainStudents.get(i));
         }
+        
+        for(int j=0; j < students.size(); j++) {
+        	if(students.get(j).getSex() == "Men") {
+        		setMenSeatColor(g);
+        	}else if(students.get(j).getSex() == "Women") {
+        		setWomenSeatColor(g);
+        	}else {
+        		setReaderSeatColor(g);
+        	}
+        }
     }
 
     //남아있는 학생 배열에 넣기
@@ -61,5 +75,24 @@ public class ArrangeManager {
         }
         return available;
     }
+
+
+	@Override
+	public void setMenSeatColor(Graphics g) {
+		g.setColor(Color.BLUE);
+		g.fillOval(0,0,CIRCLE_SIZE,CIRCLE_SIZE);
+	}
+
+	@Override
+	public void setWomenSeatColor(Graphics g) {
+		g.setColor(Color.RED);
+		g.fillOval(0,0,CIRCLE_SIZE,CIRCLE_SIZE);		
+	}
+
+	@Override
+	public void setReaderSeatColor(Graphics g) {
+		g.setColor(Color.YELLOW);
+		g.fillOval(0,0,CIRCLE_SIZE,CIRCLE_SIZE);
+	}
 
 }
