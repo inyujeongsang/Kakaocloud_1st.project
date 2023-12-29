@@ -2,64 +2,62 @@ package kakao.project.student;
 
 public class Student {
 
-	private int sID;
-	private String sName;
-	private String sSex;
-	private int sPresentTableNumber;
+    private int ID;
+    private String name;
+    private String Sex;
+    private int PresentTableNumber;
 
-	Student() {
-		this.sID = 0;
-		this.sName = null;
-		this.sSex = null;
-		this.sPresentTableNumber = 0;
-	}
+    public Student() {
+        ID = 0;
+        name = null;
+        Sex = null;
+        PresentTableNumber = 0;
+    }
 
-	Student(int sID, String sName, String sSex) {
-		this.sID = sID;
-		this.sName = sName;
-		this.sSex = sSex;
-	}
+    Student(int nID, String nName, String nSex) {
+        ID = nID;
+        name = nName;
+        Sex = nSex;
+    }
 
-	Student(int sID, String sName, String sSex, int sPresentTableNumber) {
-		this.sID = sID;
-		this.sName = sName;
-		this.sSex = sSex;
-		this.sPresentTableNumber = sPresentTableNumber;
-	}
+    Student(int nID, String nName, String nSex, int nPresentTableNumber) {
+        ID = nID;
+        name = nName;
+        Sex = nSex;
+        PresentTableNumber = nPresentTableNumber;
+    }
 
-	public int getsID() {
-		return sID;
-	}
+    public int getID() {
+        return ID;
+    }
 
-	public void setsID(int sID) {
-		this.sID = sID;
-	}
+    public void setID(int iD) {
+        ID = iD;
+    }
 
-	public String getsName() {
-		return sName;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setsName(String sName) {
-		this.sName = sName;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getsSex() {
-		return sSex;
-	}
+    public String getSex() {
+        return Sex;
+    }
 
-	public void setsSex(String sSex) {
-		this.sSex = sSex;
-	}
+    public void setSex(String sex) {
+        this.Sex = sex;
+    }
 
-	public int getsPresentTableNumber() {
-		return sPresentTableNumber;
-	}
+    public int getPresnetTableNumber() {
+        return PresentTableNumber;
+    }
 
-	public void setsPresentTableNumber(int sPresentTableNumber) {
-		this.sPresentTableNumber = sPresentTableNumber;
-	}
-
-	
+    public void setPresentTableNumber(int PresentTableNumber) {
+        this.PresentTableNumber = PresentTableNumber;
+    }
 
 }
 
