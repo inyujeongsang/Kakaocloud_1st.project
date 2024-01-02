@@ -92,7 +92,7 @@ public class StudentManager {
 				    updatedSeatReason = input.next();
 				   }
 				
-				update(updateID, updateName, updateName, updateID, updatedReservedSeatYN, updatedSeatReason);
+				update(updateID, updateName, updateSex, updateID, updatedReservedSeatYN, updatedSeatReason);
 				break;
 			case 6:
 				System.out.println("Enter search ID:");
@@ -136,8 +136,9 @@ public class StudentManager {
 			String name = input.next();
 			String Sex = input.next();
 			int PresentTableNumber = input.nextInt();
-			boolean ReservedSeatYN = input.nextBoolean();
+			boolean ReservedSeatYN = Boolean.parseBoolean(input.next());
 			String SeatReason = input.next();
+			
 			Student std = new Student();
 			std.setsID(id);
 			std.setsName(name);
@@ -184,6 +185,7 @@ public class StudentManager {
 			output.print(std.isReservedSeatYN());
 			output.print(" ");
 			output.print(std.getSeatReason());
+			output.println(" ");
 		}
 		output.close();
 	}//saveStudentData
@@ -255,11 +257,11 @@ public class StudentManager {
 
 	private static void display() {
 		for (int i=0; i<StudentArray.size(); i++) {
-			System.out.println(StudentArray.get(i).getsID());
-			System.out.println(StudentArray.get(i).getsName());
-			System.out.println(StudentArray.get(i).getsSex());
-			System.out.println(StudentArray.get(i).getsPresentTableNumber());
-			System.out.println(StudentArray.get(i).isReservedSeatYN());
+			System.out.print(StudentArray.get(i).getsID()+" ");
+			System.out.print(StudentArray.get(i).getsName()+" ");
+			System.out.print(StudentArray.get(i).getsSex()+" ");
+			System.out.print(StudentArray.get(i).getsPresentTableNumber()+" ");
+			System.out.print(StudentArray.get(i).isReservedSeatYN()+" ");
 			System.out.println(StudentArray.get(i).getSeatReason());
 		}
 		

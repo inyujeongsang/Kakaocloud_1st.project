@@ -6,7 +6,6 @@ public class Student {
 	private String sName;
 	private String sSex;
 	private int sPresentTableNumber;
-	
 	private boolean sReservedSeatYN;
 	private String sSeatReason;
 
@@ -15,7 +14,6 @@ public class Student {
 		this.sName = null;
 		this.sSex = null;
 		this.sPresentTableNumber = 0;
-		
 		this.sReservedSeatYN = false; // 좌석 예약 여부 기본값은 false로 설정
 	    this.sSeatReason = null; // 좌석 예약하지 않았을 때 이유는 초기에 null로 설정
 
@@ -35,7 +33,6 @@ public class Student {
 		this.sName = sName;
 		this.sSex = sSex;
 		this.sPresentTableNumber = sPresentTableNumber;
-		
 		this.sReservedSeatYN = false; // 좌석 예약 여부 기본값은 false로 설정
 	    this.sSeatReason = null; // 좌석 예약하지 않았을 때 이유는 초기에 null로 설정
 
