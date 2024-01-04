@@ -53,17 +53,23 @@
 
 와이어프레임 제작을 통해 두개의 UI가 필요하다는 결론 도출
 
-### 와이어프레임을 기반으로한 UI/UX 제작
+### 와이어프레임을 기반으로 UI/UX 제작
 
 |학생정보관리|랜덤좌석배치프로그램|
 |------|---|
 |![image](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/130035930/e2ac7963-9a21-4fb7-bd71-db8e026064cd)|<img width="920" alt="스크린샷 2024-01-04 오후 11 51 05" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/92003065-feea-48c6-9ea1-ee7be444534a">|
 
 
-### 자리 배치 방식
-|랜덤좌석배치프로그램|
-|------|
-|![image](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/130035930/e45def65-2940-4844-9270-259aa1263dec)|
+### UI/UX를 기반으로 JAVA GUI 제작
+|학생정보관리|랜덤좌석배치프로그램|
+|------|---|
+|![KakaoTalk_Photo_2024-01-04-18-17-04](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/cd38e80e-0e6a-442e-97ed-c5e3c9e1fe26)|![KakaoTalk_Photo_2024-01-04-18-14-52](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/b84d8a43-c5e3-49fc-b260-1b40e9117c9a)|
+
+
+
+
+
+
 
 ### 프로그램 실행
 제목|내용|설명|내용|
