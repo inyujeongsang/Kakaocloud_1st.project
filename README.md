@@ -49,7 +49,9 @@
 
 <img width="792" alt="스크린샷 2024-01-04 오후 5 37 10" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/b146c65f-07d4-4605-8730-b6ff8fc3b40f">
 
+### 간트차트
 
+### 다이어그램
 
 ### 프로그램 설명
 |학생정보관리|설정화면|
