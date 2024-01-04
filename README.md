@@ -57,8 +57,7 @@
 
 |학생정보관리|랜덤좌석배치프로그램|
 |------|---|
-|![image](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/130035930/e2ac7963-9a21-4fb7-bd71-db8e026064cd)|!<img width="920" alt="스크린샷 2024-01-04 오후 11 51 05" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/92003065-feea-48c6-9ea1-ee7be444534a">
-|
+|![image](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/130035930/e2ac7963-9a21-4fb7-bd71-db8e026064cd)|!<img width="920" alt="스크린샷 2024-01-04 오후 11 51 05" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/92003065-feea-48c6-9ea1-ee7be444534a">|
 
 
 ### 자리 배치 방식
