@@ -5,39 +5,31 @@ public class Student {
 	private int sID;
 	private String sName;
 	private String sSex;
-	private int sPresentTableNumber;
-	private boolean sReservedSeatYN;
-	private String sSeatReason;
+	private int currentSeatNumber; //현재자리번호
+	private int reservedSeatNumber; //지정석자리번호
+	private String reservedSeatReason; //지정석사유
+	private boolean reservedSeatStatus; //지정석 유무 : true, false
 
-	Student() {
+	private SeatAssignment seatAssignment; //좌석배정정보
+	private ReservedSeat reservedSeat; //지정석 정보
+
+	public Student() {
 		this.sID = 0;
 		this.sName = null;
 		this.sSex = null;
-		this.sPresentTableNumber = 0;
-		this.sReservedSeatYN = false; // 좌석 예약 여부 기본값은 false로 설정
-	    this.sSeatReason = null; // 좌석 예약하지 않았을 때 이유는 초기에 null로 설정
-
+		this.seatAssignment = new SeatAssignment(); //초기화
+		this.reservedSeat = new ReservedSeat();
 	}
 
 	Student(int sID, String sName, String sSex) {
 		this.sID = sID;
 		this.sName = sName;
 		this.sSex = sSex;
-		this.sReservedSeatYN = false; // 좌석 예약 여부 기본값은 false로 설정
-	    this.sSeatReason = null; // 좌석 예약하지 않았을 때 이유는 초기에 null로 설정
-
+		this.seatAssignment = new SeatAssignment(); //초기화
+		this.reservedSeat = new ReservedSeat();
 	}
 
-	Student(int sID, String sName, String sSex, int sPresentTableNumber) {
-		this.sID = sID;
-		this.sName = sName;
-		this.sSex = sSex;
-		this.sPresentTableNumber = sPresentTableNumber;
-		this.sReservedSeatYN = false; // 좌석 예약 여부 기본값은 false로 설정
-	    this.sSeatReason = null; // 좌석 예약하지 않았을 때 이유는 초기에 null로 설정
-
-	}
-
+	//*** Getter & Setter 시작 ***//
 	public int getsID() {
 		return sID;
 	}
@@ -62,32 +54,22 @@ public class Student {
 		this.sSex = sSex;
 	}
 
-	public int getsPresentTableNumber() {
-		return sPresentTableNumber;
+	public SeatAssignment getSeatAssignment(){
+		return seatAssignment;
 	}
 
-	public void setsPresentTableNumber(int sPresentTableNumber) {
-		this.sPresentTableNumber = sPresentTableNumber;
+	public void setSeatAssignment(SeatAssignment seatAssignment){
+		this.seatAssignment = seatAssignment;
 	}
 
-
-	// reservedSeatYN에 대한 getter와 setter 메서드
-	public boolean isReservedSeatYN() {
-	    return sReservedSeatYN;
+	public ReservedSeat getReservedSeat(){
+		return reservedSeat;
 	}
 
-	public void setReservedSeatYN(boolean reservedSeatYN) {
-	    this.sReservedSeatYN = reservedSeatYN;
+	public void setReservedSeat(ReservedSeat reservedSeat){
+		this.reservedSeat = reservedSeat;
 	}
 
-	// seatReason에 대한 getter와 setter 메서드
-	public String getSeatReason() {
-	    return sSeatReason;
-	}
-
-	public void setSeatReason(String seatReason) {
-	    this.sSeatReason = seatReason;
-	}
-
+	//*** Getter & Setter 끝 ***//
 }
 
