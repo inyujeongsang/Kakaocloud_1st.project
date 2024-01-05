@@ -2,92 +2,105 @@ package kakao.project.student;
 
 public class Student {
 
-	private int sID;
-	private String sName;
-	private String sSex;
-	private int sPresentTableNumber;
-	private boolean sReservedSeatYN;
-	private String sSeatReason;
+   private int sID;
+   private String sName;
+   private String sSex;
+   private int currentSeatNumber; //현재자리번호
+   private int reservedSeatNumber; //지정석자리번호
+   private String reservedSeatReason; //지정석사유
+   private boolean reservedSeatStatus; //지정석 유무 : true, false
 
-	Student() {
-		this.sID = 0;
-		this.sName = null;
-		this.sSex = null;
-		this.sPresentTableNumber = 0;
-		this.sReservedSeatYN = false; // 좌석 예약 여부 기본값은 false로 설정
-	    this.sSeatReason = null; // 좌석 예약하지 않았을 때 이유는 초기에 null로 설정
+   public String getReservedSeatReason() {
+      return reservedSeatReason;
+   }
 
-	}
+   public void setReservedSeatReason(String reservedSeatReason) {
+      this.reservedSeatReason = reservedSeatReason;
+   }
 
-	Student(int sID, String sName, String sSex) {
-		this.sID = sID;
-		this.sName = sName;
-		this.sSex = sSex;
-		this.sReservedSeatYN = false; // 좌석 예약 여부 기본값은 false로 설정
-	    this.sSeatReason = null; // 좌석 예약하지 않았을 때 이유는 초기에 null로 설정
+   public int getCurrentSeatNumber() {
+      return currentSeatNumber;
+   }
 
-	}
+   public void setCurrentSeatNumber(int currentSeatNumber) {
+      this.currentSeatNumber = currentSeatNumber;
+   }
 
-	Student(int sID, String sName, String sSex, int sPresentTableNumber) {
-		this.sID = sID;
-		this.sName = sName;
-		this.sSex = sSex;
-		this.sPresentTableNumber = sPresentTableNumber;
-		this.sReservedSeatYN = false; // 좌석 예약 여부 기본값은 false로 설정
-	    this.sSeatReason = null; // 좌석 예약하지 않았을 때 이유는 초기에 null로 설정
+   public int getReservedSeatNumber() {
+      return reservedSeatNumber;
+   }
 
-	}
+   public void setReservedSeatNumber(int reservedSeatNumber) {
+      this.reservedSeatNumber = reservedSeatNumber;
+   }
 
-	public int getsID() {
-		return sID;
-	}
+   public boolean isReservedSeatStatus() {
+      return reservedSeatStatus;
+   }
 
-	public void setsID(int sID) {
-		this.sID = sID;
-	}
+   public void setReservedSeatStatus(boolean reservedSeatStatus) {
+      this.reservedSeatStatus = reservedSeatStatus;
+   }
 
-	public String getsName() {
-		return sName;
-	}
+   private SeatAssignment seatAssignment; //좌석배정정보
+   private ReservedSeat reservedSeat; //지정석 정보
 
-	public void setsName(String sName) {
-		this.sName = sName;
-	}
+   public Student() {
+      this.sID = 0;
+      this.sName = null;
+      this.sSex = null;
+      this.seatAssignment = new SeatAssignment(); //초기화
+      this.reservedSeat = new ReservedSeat();
+   }
 
-	public String getsSex() {
-		return sSex;
-	}
+   Student(int sID, String sName, String sSex) {
+      this.sID = sID;
+      this.sName = sName;
+      this.sSex = sSex;
+      this.seatAssignment = new SeatAssignment(); //초기화
+      this.reservedSeat = new ReservedSeat();
+   }
 
-	public void setsSex(String sSex) {
-		this.sSex = sSex;
-	}
+   //*** Getter & Setter 시작 ***//
+   public int getsID() {
+      return sID;
+   }
 
-	public int getsPresentTableNumber() {
-		return sPresentTableNumber;
-	}
+   public void setsID(int sID) {
+      this.sID = sID;
+   }
 
-	public void setsPresentTableNumber(int sPresentTableNumber) {
-		this.sPresentTableNumber = sPresentTableNumber;
-	}
+   public String getsName() {
+      return sName;
+   }
 
+   public void setsName(String sName) {
+      this.sName = sName;
+   }
 
-	// reservedSeatYN에 대한 getter와 setter 메서드
-	public boolean isReservedSeatYN() {
-	    return sReservedSeatYN;
-	}
+   public String getsSex() {
+      return sSex;
+   }
 
-	public void setReservedSeatYN(boolean reservedSeatYN) {
-	    this.sReservedSeatYN = reservedSeatYN;
-	}
+   public void setsSex(String sSex) {
+      this.sSex = sSex;
+   }
 
-	// seatReason에 대한 getter와 setter 메서드
-	public String getSeatReason() {
-	    return sSeatReason;
-	}
+   public SeatAssignment getSeatAssignment(){
+      return seatAssignment;
+   }
 
-	public void setSeatReason(String seatReason) {
-	    this.sSeatReason = seatReason;
-	}
+   public void setSeatAssignment(SeatAssignment seatAssignment){
+      this.seatAssignment = seatAssignment;
+   }
 
+   public ReservedSeat getReservedSeat(){
+      return reservedSeat;
+   }
+
+   public void setReservedSeat(ReservedSeat reservedSeat){
+      this.reservedSeat = reservedSeat;
+   }
+
+   //*** Getter & Setter 끝 ***//
 }
-
