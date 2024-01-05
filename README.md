@@ -49,7 +49,8 @@
 그러나 계획을 정확히 따르는 것은 매우 어려울 수 있습니다. 또한 예상치 못한 장애 요소가 발생할 수 있으므로 이러한 상황을 현명하게 극복하는 방법 또한 프로젝트 과정 중에서 중요한 부분이라고 생각합니다.
 
 
-### 다이어그램
+### CLASS DIAGRAM
+![KakaoTalk_Photo_2024-01-05-13-20-12](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/865d959a-8dd4-40b4-b4ba-b3fc37176e43)
 
 
 ### 와이어프레임
