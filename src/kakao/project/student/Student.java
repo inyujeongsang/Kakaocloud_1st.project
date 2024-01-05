@@ -8,7 +8,7 @@ public class Student {
 	private int sPresentTableNumber;
 	private boolean sReservedSeatYN;
 	private String sSeatReason;
-//ㄷㅈㄴㅇㄱㄴㄷ
+
 	Student() {
 		this.sID = 0;
 		this.sName = null;
