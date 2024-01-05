@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class StudentManager {
 
-	static ArrayList<Student> StudentArray = new ArrayList<Student>();
+	static ArrayList<Student> StudentArray = new ArrayList<>();
 	
 	
 	
@@ -58,13 +58,13 @@ public class StudentManager {
 				System.out.println("Enter Reserved Seat (Y/N):");
 			    String sReservedSeatInput = input.next();
 			    boolean sReservedSeatYN = sReservedSeatInput.equalsIgnoreCase("Y");
-			    String sSeatReason = null;
+			    String sreservedSeatReason = null;
 			    if (sReservedSeatYN) {
 			        System.out.println("Enter Seat Reservation Reason:");
-			        sSeatReason = input.next();
+			        sreservedSeatReason = input.next();
 			    }
 				
-				add(sID, sName, sSex, sPresentTableNumber, sReservedSeatYN, sSeatReason);
+				add(sID, sName, sSex, sPresentTableNumber, sReservedSeatYN, sreservedSeatReason);
 				break;
 
 			case 4:
@@ -86,13 +86,13 @@ public class StudentManager {
 				System.out.println("Enter Updated Reserved Seat (Y/N):");
 				String updatedReservedSeatInput = input.next();
 				boolean updatedReservedSeatYN = updatedReservedSeatInput.equalsIgnoreCase("Y");
-				String updatedSeatReason = null;
+				String updatedreservedSeatReason = null;
 				if (updatedReservedSeatYN) {
 					System.out.println("Enter Updated Seat Reservation Reason:");
-				    updatedSeatReason = input.next();
+				    updatedreservedSeatReason = input.next();
 				   }
 				
-				update(updateID, updateName, updateSex, updateID, updatedReservedSeatYN, updatedSeatReason);
+				update(updateID, updateName, updateSex, updateID, updatedReservedSeatYN, updatedreservedSeatReason);
 				break;
 			case 6:
 				System.out.println("Enter search ID:");
@@ -137,15 +137,15 @@ public class StudentManager {
 			String Sex = input.next();
 			int PresentTableNumber = input.nextInt();
 			boolean ReservedSeatYN = Boolean.parseBoolean(input.next());
-			String SeatReason = input.next();
+			String reservedSeatReason = input.next();
 			
 			Student std = new Student();
 			std.setsID(id);
 			std.setsName(name);
 			std.setsSex(Sex);
-			std.setsPresentTableNumber(PresentTableNumber);
-			std.setReservedSeatYN(ReservedSeatYN);
-			std.setSeatReason(SeatReason);
+			std.setCurrentSeatNumber(PresentTableNumber);
+			std.setReservedSeatStatus(ReservedSeatYN);
+			std.setReservedSeatReason(reservedSeatReason);
 			
 			
 			StudentArray.add(std);
@@ -180,17 +180,17 @@ public class StudentManager {
 			output.print(" ");
 			output.print(std.getsSex());
 			output.print(" ");
-			output.print(std.getsPresentTableNumber());
+			output.print(std.getCurrentSeatNumber());
 			output.print(" ");
-			output.print(std.isReservedSeatYN());
+			output.print(std.isReservedSeatStatus());
 			output.print(" ");
-			output.print(std.getSeatReason());
+			output.print(std.getReservedSeatReason());
 			output.println(" ");
 		}
 		output.close();
 	}//saveStudentData
 
-	private static void add(int id, String name, String Sex, int PresentTableNumber, boolean reservedSeatYN, String seatReason) {
+	private static void add(int id, String name, String Sex, int currentSeatNumber, boolean reservedSeatStatus, String reservedSeatReason) {
 		for (Student std : StudentArray) {
 			if (std.getsID() == id) {
 				System.out.println("Add failed. dup id");
@@ -202,9 +202,9 @@ public class StudentManager {
 		std.setsID(id);
 		std.setsName(name);
 		std.setsSex(Sex);
-		std.setsPresentTableNumber(PresentTableNumber);
-		std.setReservedSeatYN(reservedSeatYN);
-	    std.setSeatReason(seatReason);
+		std.setCurrentSeatNumber(currentSeatNumber);
+		std.setReservedSeatStatus(reservedSeatStatus);
+	    std.setReservedSeatReason(reservedSeatReason);
 		StudentArray.add(std);
 		System.out.println("Add success");
 		saveStudentData();
@@ -221,7 +221,7 @@ public class StudentManager {
 		}
 	}//delete
 	
-	private static void update(int id, String name, String Sex, int PresentTableNumber, boolean ReservedSeatYN, String SeatReason) {
+	private static void update(int id, String name, String Sex, int PresentTableNumber, boolean ReservedSeatYN, String reservedSeatReason) {
 		for (Student std : StudentArray) {
 			if (std.getsID() == id) {
 				if (name != null) {
@@ -231,10 +231,10 @@ public class StudentManager {
 					std.setsSex(Sex);
 				}
 				if (PresentTableNumber != 0) {
-					std.setsPresentTableNumber(PresentTableNumber);
+					std.setCurrentSeatNumber(PresentTableNumber);
 				}
-				std.setReservedSeatYN(ReservedSeatYN);
-	            std.setSeatReason(SeatReason);
+				std.setReservedSeatStatus(ReservedSeatYN);
+	            std.setReservedSeatReason(reservedSeatReason);
 	            saveStudentData();
 				System.out.println("Update success");
 				return;
@@ -245,9 +245,9 @@ public class StudentManager {
 	private static void search(int id) {
 		for (Student std : StudentArray) {
 			if (std.getsID() == id) {
-		System.out.println(std.getsID() + " " + std.getsName() + " " + std.getsSex() + " " + std.getsPresentTableNumber()
-		+ " " + std.isReservedSeatYN()
-		+ " " + std.getSeatReason());
+		System.out.println(std.getsID() + " " + std.getsName() + " " + std.getsSex() + " " + std.getCurrentSeatNumber()
+		+ " " + std.isReservedSeatStatus()
+		+ " " + std.getReservedSeatReason());
 				return;
 			}
 		}
@@ -260,9 +260,9 @@ public class StudentManager {
 			System.out.print(StudentArray.get(i).getsID()+" ");
 			System.out.print(StudentArray.get(i).getsName()+" ");
 			System.out.print(StudentArray.get(i).getsSex()+" ");
-			System.out.print(StudentArray.get(i).getsPresentTableNumber()+" ");
-			System.out.print(StudentArray.get(i).isReservedSeatYN()+" ");
-			System.out.println(StudentArray.get(i).getSeatReason());
+			System.out.print(StudentArray.get(i).getCurrentSeatNumber()+" ");
+			System.out.print(StudentArray.get(i).isReservedSeatStatus()+" ");
+			System.out.println(StudentArray.get(i).getReservedSeatReason());
 		}
 		
 	}//display

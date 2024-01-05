@@ -10,6 +10,38 @@ public class Student {
 	private String reservedSeatReason; //지정석사유
 	private boolean reservedSeatStatus; //지정석 유무 : true, false
 
+	public String getReservedSeatReason() {
+		return reservedSeatReason;
+	}
+
+	public void setReservedSeatReason(String reservedSeatReason) {
+		this.reservedSeatReason = reservedSeatReason;
+	}
+
+	public int getCurrentSeatNumber() {
+		return currentSeatNumber;
+	}
+
+	public void setCurrentSeatNumber(int currentSeatNumber) {
+		this.currentSeatNumber = currentSeatNumber;
+	}
+
+	public int getReservedSeatNumber() {
+		return reservedSeatNumber;
+	}
+
+	public void setReservedSeatNumber(int reservedSeatNumber) {
+		this.reservedSeatNumber = reservedSeatNumber;
+	}
+
+	public boolean isReservedSeatStatus() {
+		return reservedSeatStatus;
+	}
+
+	public void setReservedSeatStatus(boolean reservedSeatStatus) {
+		this.reservedSeatStatus = reservedSeatStatus;
+	}
+
 	private SeatAssignment seatAssignment; //좌석배정정보
 	private ReservedSeat reservedSeat; //지정석 정보
 
