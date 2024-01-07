@@ -1,5 +1,5 @@
 package kakao.project.student;
-
+//
 public class Student {
 
    private int sID;
