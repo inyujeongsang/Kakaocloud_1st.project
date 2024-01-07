@@ -3,13 +3,17 @@ package kakao.project.student;
 import java.util.*;
 
 public class SeatAssignment {
-    /*클래스 역할
+    /*SeatAssignment 클래스 역할
     * 1. 학생의 자리배정 정보를 관리한다.
-    * 2. 현재 자리번호, 이전 자리번호, 이전 짝꿍의 정보를 관리한다.
+    * 2. 현재 자리번호, 이전 자리번호, 이전 짝꿍의 정보를 추적하는데에 사용된다.
     * 3. 자리 배정 데이터를 캡슐화하여 이 데이터에 대한 접근과 수정을 제어한다.
-    * 4. 특정 상황에서 학생의 자리 배정 정보를 초기화할 필요가 있을 수 있다. 이때 resetCurrentSeat메서드를 호출한다.
-    * 5. 전체 자리배치는 ArrangeManager가 관리하지만, 개별 자리 정보는 SeatAssignment가 관리한다.
+    * 4. 전체 자리배치는 ArrangeManager가 관리하지만, 개별 자리 정보는 SeatAssignment가 관리한다.
+    * 5. ArrangeManager에서 student를 참조하여 배열을 만들고, SeatAssignment 인스턴스를 만들어 정보에 접근하여
+    * 로직을 수행한다.
     * */
+
+    //외부접근 제어하려고 private씀. (캡슐화)
+    // (외부에서 SeatAssignment인스턴스를 만들어야만 get, set가능)
     private int currentTableNumber; //자리번호
     private int previousTableNumber; //이전 자리번호
     private List<Integer> previousPartners; //이전 분단 짝꿍ID배열

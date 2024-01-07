@@ -1,9 +1,14 @@
 package kakao.project.student;
 
 public class ReservedSeat {
-    /*역할
+    /* ReservedSeat의 역할
     * 1. 특정 학생에게 지정된 좌석과 그에 대한 정보를 관리한다.
     * 2. 지정석 여부, 지정 자리번호, 지정석 사유 정보를 관리한다.
+    *
+    * 쓰이는 곳
+    * student에서 ReservedSeat객체 getter로 가져오고,
+    * ArrangeManager에서 student의 getter로 ReservedSeat의 메서드에 접근한다.
+    * (student.getReservedSeat().isReserved())
     * */
     private int reservedSeatNum; //지정석 자리번호
     private boolean isReserved; //지정석 여부

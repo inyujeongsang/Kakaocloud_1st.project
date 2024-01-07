@@ -1,7 +1,14 @@
 package kakao.project.student;
 
 public class Student {
-
+	/*Student 클래스의 역할
+	* 1. 학생의 정보를 저장하여 학생을 나타낸다.
+	* 2. 정보에는 학생id, 학생이름, 학생성별, 현재 좌석번호, 지정석번호, 지정석 유무, 지정석 사유가 포함된다.
+	*
+	* Student & SeatAssignment & ReservedSeat 관계
+	* 합성관계다.(UML로 따지면 검은 다이아몬드모양)
+	* Student는 SeatAssignment와 ReservedSeat를 포함한다.
+	*  */
 	private int sID;
 	private String sName;
 	private String sSex;
@@ -53,10 +60,14 @@ public class Student {
 		this.reservedSeat = new ReservedSeat();
 	}
 
-	Student(int sID, String sName, String sSex) {
+	Student(int sID, String sName, String sSex,int currentSeatNumber, int reservedSeatNumber, boolean reservedSeatStatus, String reservedSeatReason) {
 		this.sID = sID;
 		this.sName = sName;
 		this.sSex = sSex;
+		this.currentSeatNumber = currentSeatNumber;
+		this.reservedSeatNumber = reservedSeatNumber;
+		this.reservedSeatStatus = reservedSeatStatus;
+		this.reservedSeatReason = reservedSeatReason;
 		this.seatAssignment = new SeatAssignment(); //초기화
 		this.reservedSeat = new ReservedSeat();
 	}
