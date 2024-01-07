@@ -1,6 +1,5 @@
 package kakao.project.arrange;
 
-import kakao.project.student.ReservedSeat;
 import kakao.project.student.SeatAssignment;
 import kakao.project.student.Student;
 
@@ -10,12 +9,20 @@ import java.util.Collections;
 import java.util.List;
 
 public class ArrangeManager implements SeatColor{
+    /*ArrangeManager 클래스의 역할
+    1. 좌석관리와 학생 배치를 담당한다.
+    - 자리 초기화 : 좌석을 초기화하여 빈자리를 만든다.
+    - 학생 배치 : 학생들을 좌석에 배치한다.
+      지정석 먼저 배치 -> 이전 자리, 이전 짝꿍 안겹치도록 나머지 학생 랜덤배치
+    2. 자리 배치와 관련된 모든 작업을 중앙에서 관리하도록 하여, 코드의 일관성과 유지보수성 향상.
+
+    특징
+    - 하나의 인스턴스만 위 역할을 수행하도록 싱글톤 패턴으로 구현함.
+
+    * */
     private static ArrangeManager instance; //싱글톤 인스턴스
     private List<Arrange> seats;
     private List<Student> students;
-
-    private SeatAssignment seatAssignment; //자리배치
-    private ReservedSeat reservedSeat; //지정석자리
     public static final int SEAT_NUMBER = 26;
     public static final int CIRCLE_SIZE = 5;
 
@@ -152,6 +159,9 @@ public class ArrangeManager implements SeatColor{
         return false;
     }
 
+    public List<Arrange> getSeats() {
+        return seats;
+    }
 
 	@Override
 	public void setMenSeatColor(Graphics g) {
