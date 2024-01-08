@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import kakao.project.arrange.ArrangeManager;
 import kakao.project.gui.ArrangeFrame;
-import kakao.project.gui.MyFrame;
 import kakao.project.student.StudentManager;
 
 public class Main {
