@@ -92,7 +92,7 @@ public class StudentManager {
 		} while (cmd != 8);
 	}
 
-	private void loadStudentData() {
+	public void loadStudentData() {
 		try {
 			File file = new File("Data.txt");
 			Scanner input = new Scanner(file);

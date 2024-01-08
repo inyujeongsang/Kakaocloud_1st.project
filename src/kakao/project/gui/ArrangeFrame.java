@@ -314,7 +314,9 @@ public class ArrangeFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//랜덤 배치 실행
+				StudentManager sdtm = StudentManager.getInstance();
 				ArrangeManager arrm = ArrangeManager.getInstance(StudentManager.getInstance().getStudents());
+				sdtm.loadStudentData();
 				arrm.allocateSeats();
 				fetchStudents(arrm);
 				repaint();
