@@ -54,15 +54,23 @@ public class ArrangeManager implements SeatColor{
             seats.add(new Arrange(i)); //1부터 시작하는 자리번호
         }
     }
-
-    //자리배치 메서드
+    
+    
+    
+    
+    
+  //자리배치 메서드
     public void allocateSeats() {
+    	initializeSeats(SEAT_NUMBER);
         // 지정석 학생 우선 배치
         for (Student student : students) {
-            if (student.getReservedSeat().isReserved()) { //지정석여부 체크
-               int reservedSeatNum = student.getReservedSeat().getReservedSeatNum();
-               seats.get(reservedSeatNum).assignStudent(student);
-            }
+           if(student != null) {
+              if(student.isReservedSeatStatus()) { //지정석여부 체크
+                    int reservedSeatNum = student.getReservedSeatNumber();
+                    seats.get(reservedSeatNum).assignStudent(student);
+                    System.out.println("Assigned student to reserved seat: " + student.getsName() + " to seat number " + reservedSeatNum);
+                 }
+           } 
         }
 
         //이전 자리 및 짝꿍을 고려한 랜덤 배치 로직
@@ -74,6 +82,7 @@ public class ArrangeManager implements SeatColor{
             if(assignedSeat != null){
                 assignedSeat.assignStudent(student);
                 availableSeats.remove(assignedSeat);
+                System.out.println("Assigned student: " + student.getsName() + " to seat: " + assignedSeat.getSeatNum());
             }
         }
     }
@@ -82,7 +91,7 @@ public class ArrangeManager implements SeatColor{
     private List<Student> getRemainStudents() {
         List<Student> remain = new ArrayList<>();
         for (Student student : students) {
-            if (!student.getReservedSeat().isReserved()) {
+            if (!student.isReservedSeatStatus()) {
                 remain.add(student);
             }
         }
@@ -93,7 +102,7 @@ public class ArrangeManager implements SeatColor{
     private List<Arrange> getAvailableSeats() {
         List<Arrange> available = new ArrayList<>();
         for (Arrange seat : seats) {
-            if (seat.getStudent() == null) { // 아직 학생이 배정되지 않은 자리
+            if (seat != null && seat.getStudent() == null) { // seat이 null이 아니고 학생이 배정되지 않은 자리
                 available.add(seat);
             }
         }

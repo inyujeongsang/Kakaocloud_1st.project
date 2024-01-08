@@ -2,9 +2,13 @@ package kakao.project.student;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentManager {
+	public List<Student> getStudents() {
+        return studentArray; // 혹은 학생 목록을 저장하고 있는 필드명
+    }
 	/*StudentManager의 역할
 	* 1. 학생 목록을 관리한다.
 	* 2. 학생 데이터를 load, save, add, delete, update, search, display하는 메서드 제공
@@ -18,7 +22,8 @@ public class StudentManager {
 
 	private static StudentManager instance = null;
 	private ArrayList<Student> studentArray;
-
+	Scanner input = new Scanner(System.in);
+	
 	private StudentManager() {
 		studentArray = new ArrayList<>();
 	}
@@ -57,19 +62,19 @@ public class StudentManager {
 					break;
 
 				case 3:
-					addStudent(input);
+					addStudent();
 					break;
 
 				case 4:
-					deleteStudent(input);
+					deleteStudent();
 					break;
 
 				case 5:
-					updateStudent(input);
+					updateStudent();
 					break;
 
 				case 6:
-					searchStudent(input);
+					searchStudent();
 					break;
 
 				case 7:
@@ -144,7 +149,7 @@ public class StudentManager {
 		}
 	}
 
-	private void addStudent(Scanner input) {
+	private void addStudent() {
 		System.out.println("Enter ID:");
 		int id = input.nextInt();
 		if (isIDExists(id)) {
@@ -176,7 +181,7 @@ public class StudentManager {
 		saveStudentData();
 	}
 
-	private void deleteStudent(Scanner input) {
+	private void deleteStudent() {
 		System.out.println("Enter delete ID:");
 		int deleteID = input.nextInt();
 		Student studentToDelete = null;
@@ -197,7 +202,7 @@ public class StudentManager {
 		}
 	}
 
-	private void updateStudent(Scanner input) {
+	private void updateStudent() {
 		System.out.println("Enter ID:");
 		int id = input.nextInt();
 		Student studentToUpdate = null;
@@ -249,24 +254,32 @@ public class StudentManager {
 		}
 	}
 
-	private void searchStudent(Scanner input) {
+	private void searchStudent() {
 		System.out.println("Enter search ID:");
 		int searchID = input.nextInt();
 
-		for (Student student : studentArray) {
-			if (student.getsID() == searchID) {
-				System.out.println(student.toString());
-				return;
-			}
-		}
-
-		System.out.println("Student not found.");
+		 for (Student std : studentArray) {
+	         if (std.getsID() == searchID) {
+	      System.out.println(std.getsID() + " " + std.getsName() + " " + std.getsSex() + " " + std.getCurrentSeatNumber()
+	      + " " + std.isReservedSeatStatus()
+	      + " " + std.getReservedSeatReason());
+	            return;
+	         }
+	      }
+	      System.out.println("Not found");
 	}
 
 	private void displayStudents() {
-		for (Student student : studentArray) {
-			System.out.println(student.toString());
-		}
+		  for (int i=0; i<studentArray.size(); i++) {
+		         System.out.print(studentArray.get(i).getsID()+" ");
+		         System.out.print(studentArray.get(i).getsName()+" ");
+		         System.out.print(studentArray.get(i).getsSex()+" ");
+		         System.out.print(studentArray.get(i).getCurrentSeatNumber()+" ");
+		         System.out.print(studentArray.get(i).isReservedSeatStatus()+" ");
+		         System.out.println(studentArray.get(i).getReservedSeatReason());
+		      }
+
+
 	}
 
 	private boolean isIDExists(int id) {
