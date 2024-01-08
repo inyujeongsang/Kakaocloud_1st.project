@@ -2,12 +2,22 @@ package kakao.project.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.AWTException;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
+import kakao.project.arrange.Arrange;
+import kakao.project.arrange.ArrangeManager;
+import kakao.project.student.Student;
+import kakao.project.student.StudentManager;
+
 import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -17,12 +27,18 @@ import java.awt.dnd.DropTargetDropEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JLabel;
 
 public class ArrangeFrame extends JFrame {
@@ -49,8 +65,10 @@ public class ArrangeFrame extends JFrame {
 		peoples.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//학생 정보 CRUD
-				System.out.println("학생 정보 버튼 눌림");
+				//학생 정보 프레임 실행
+				StudentFrame studentFrame = new StudentFrame();
+    	        		studentFrame.setVisible(true);
+    	        		dispose();
 			}
 		});
 		peoples.setForeground(Color.BLACK);
@@ -85,13 +103,6 @@ public class ArrangeFrame extends JFrame {
 		textField_Title.setColumns(13);
 		
 		JButton play = new JButton("");
-		play.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//랜덤 배치 실행
-				System.out.println("이미지 저장 버튼 눌림");
-			}
-		});
 		play.setBackground(Color.BLACK);
 		play.setForeground(Color.BLACK);
 		play.setIcon(new ImageIcon("C:\\Users\\user\\Desktop\\1stProjectImage\\KakaoTalk_20240104_163010490_01.png"));
@@ -102,9 +113,25 @@ public class ArrangeFrame extends JFrame {
 		fileSave.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//파일 이미지 저장
-				System.out.println("파일 저장 버튼 눌림");
-			}
+		    	        try {
+		    	            ArrangeFrame frame = (ArrangeFrame) SwingUtilities.getWindowAncestor(fileSave);
+		    	            // ArrangeFrame의 위치와 크기 얻기
+		    	            Rectangle frameRect = frame.getBounds();
+    	            
+		    	            // ArrangeFrame의 위치로 이동하여 캡쳐
+		    	            Robot robot = new Robot();
+		    	            BufferedImage screenshot = robot.createScreenCapture(frameRect);
+    	            
+		    	            // 파일 저장
+		    	            String fileName = "screenshot_" + System.currentTimeMillis() + ".png";
+		    	            File output = new File(fileName);
+		    	            ImageIO.write(screenshot, "png", output);
+    	            
+		    	            System.out.println("스크린샷이 저장되었습니다: " + fileName);
+		    	        } catch (AWTException | IOException ex) {
+		    	            ex.printStackTrace();
+		    	        }
+		    	    }
 		});
 		fileSave.setForeground(Color.BLACK);
 		fileSave.setBackground(Color.BLACK);
@@ -282,6 +309,19 @@ public class ArrangeFrame extends JFrame {
 	        button.addMouseListener(new ButtonMouseListener());
 	        button.setDropTarget(new DropTarget(button, new ButtonDropTargetListener()));
 	    }
+	    
+	    play.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//랜덤 배치 실행
+				ArrangeManager arrm = ArrangeManager.getInstance(StudentManager.getInstance().getStudents());
+				arrm.allocateSeats();
+				fetchStudents(arrm);
+				repaint();
+				System.out.println("랜덤 배치 버튼 눌림");
+			}
+		});
+	    
 	}//ArrangeFrame()
 	
 	// TransferHandler 클래스를 상속한 ButtonDragDropHandler 클래스
@@ -334,4 +374,12 @@ public class ArrangeFrame extends JFrame {
             }
         }
     }//ButtonDropTargetListener
+    
+    public void fetchStudents(ArrangeManager arrm){
+    	for(int i=1; i < arrm.getSeats().size(); i++) {    	
+    		if(arrm.getSeats().get(i).getStudent() != null) {
+    			buttonsArray[arrm.getSeats().get(i).getSeatNum()-1].setText(arrm.getSeats().get(i).getStudent().getsName());    			
+    		}
+    	}
+    }
 }
