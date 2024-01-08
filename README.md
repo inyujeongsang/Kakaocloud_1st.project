@@ -50,7 +50,7 @@
 
 
 ### CLASS DIAGRAM
-![KakaoTalk_Photo_2024-01-05-13-20-12](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/865d959a-8dd4-40b4-b4ba-b3fc37176e43)
+<img width="526" alt="image" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/29bc3795-3c5c-4c4f-ae46-40ce23997d12">
 
 
 ### 와이어프레임
