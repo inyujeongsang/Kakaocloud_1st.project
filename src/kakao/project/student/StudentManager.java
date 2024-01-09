@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StudentManager {
+	
+	
+	
 	public List<Student> getStudents() {
         return studentArray; // 혹은 학생 목록을 저장하고 있는 필드명
     }
@@ -62,19 +65,19 @@ public class StudentManager {
 					break;
 
 				case 3:
-					addStudent();
+//					addStudent();
 					break;
 
 				case 4:
-					deleteStudent();
+//					deleteStudent();
 					break;
 
 				case 5:
-					updateStudent();
+//					updateStudent();
 					break;
 
 				case 6:
-					searchStudent();
+//					searchStudent();
 					break;
 
 				case 7:
@@ -96,7 +99,7 @@ public class StudentManager {
 		try {
 			File file = new File("Data.txt");
 			Scanner input = new Scanner(file);
-
+			studentArray.clear();
 			while (input.hasNext()) {
 				int id = input.nextInt();
 				String name = input.next();
@@ -149,41 +152,46 @@ public class StudentManager {
 		}
 	}
 
-	private void addStudent() {
-		System.out.println("Enter ID:");
-		int id = input.nextInt();
-		if (isIDExists(id)) {
-			System.out.println("Add failed. Duplicate ID.");
-			return;
-		}
-
-		System.out.println("Enter Name:");
-		String name = input.next();
-		System.out.println("Enter Sex:");
-		String sex = input.next();
-		System.out.println("Enter Present Table Number:");
-		int presentTableNumber = input.nextInt();
-		System.out.println("Enter Reserved Seat (Y/N):");
-		boolean reservedSeatStatus = input.next().equalsIgnoreCase("Y");
-		int reservedSeatNumber = 0;
-		String reservedSeatReason = null;
-
-		if (reservedSeatStatus) {
-			System.out.println("Enter Reserved Seat Number:");
-			reservedSeatNumber = input.nextInt();
-			System.out.println("Enter Seat Reservation Reason:");
-			reservedSeatReason = input.next();
-		}
-
+//	public void addStudent() {
+//		System.out.println("Enter ID:");
+//		int id = input.nextInt();
+//		if (isIDExists(id)) {
+//			System.out.println("Add failed. Duplicate ID.");
+//			return;
+//		}
+//
+//		System.out.println("Enter Name:");
+//		String name = input.next();
+//		System.out.println("Enter Sex:");
+//		String sex = input.next();
+//		System.out.println("Enter Present Table Number:");
+//		int presentTableNumber = input.nextInt();
+//		System.out.println("Enter Reserved Seat (Y/N):");
+//		boolean reservedSeatStatus = input.next().equalsIgnoreCase("Y");
+//		int reservedSeatNumber = 0;
+//		String reservedSeatReason = null;
+//
+//		if (reservedSeatStatus) {
+//			System.out.println("Enter Reserved Seat Number:");
+//			reservedSeatNumber = input.nextInt();
+//			System.out.println("Enter Seat Reservation Reason:");
+//			reservedSeatReason = input.next();
+//		}
+//
+//		Student student = new Student(id, name, sex, presentTableNumber, reservedSeatNumber, reservedSeatStatus, reservedSeatReason);
+//		studentArray.add(student);
+//		System.out.println("Add success");
+//		saveStudentData();
+//	}
+	public void addStudent(int id, String sex, String name, int presentTableNumber, boolean reservedSeatStatus, String reservedSeatReason, int reservedSeatNumber) {
 		Student student = new Student(id, name, sex, presentTableNumber, reservedSeatNumber, reservedSeatStatus, reservedSeatReason);
 		studentArray.add(student);
 		System.out.println("Add success");
 		saveStudentData();
 	}
 
-	private void deleteStudent() {
-		System.out.println("Enter delete ID:");
-		int deleteID = input.nextInt();
+	public void deleteStudent(int deleteID) {
+		
 		Student studentToDelete = null;
 
 		for (Student student : studentArray) {
@@ -202,9 +210,8 @@ public class StudentManager {
 		}
 	}
 
-	private void updateStudent() {
-		System.out.println("Enter ID:");
-		int id = input.nextInt();
+	public void updateStudent(int id, String sex, String name,  int presentSeat, boolean reservedYn ,String reservedRs, int reservedNum) {
+
 		Student studentToUpdate = null;
 
 		for (Student student : studentArray) {
@@ -215,37 +222,29 @@ public class StudentManager {
 		}
 
 		if (studentToUpdate != null) {
-			System.out.println("Enter Name:");
-			String name = input.next();
+
 			if (!name.isEmpty()) {
 				studentToUpdate.setsName(name);
 			}
 
-			System.out.println("Enter Sex:");
-			String sex = input.next();
+
 			if (!sex.isEmpty()) {
 				studentToUpdate.setsSex(sex);
 			}
 
-			System.out.println("Enter Present Table Number:");
-			int presentTableNumber = input.nextInt();
-			if (presentTableNumber != 0) {
-				studentToUpdate.setCurrentSeatNumber(presentTableNumber);
+
+			if (presentSeat != 0) {
+				studentToUpdate.setCurrentSeatNumber(presentSeat);
 			}
 
-			System.out.println("Enter Updated Reserved Seat (Y/N):");
-			String updatedReservedSeatInput = input.next();
-			boolean updatedReservedSeatStatus = updatedReservedSeatInput.equalsIgnoreCase("Y");
-			if (updatedReservedSeatStatus) {
-				System.out.println("Enter Reserved Seat Number:");
-				int updatedReservedSeatNumber = input.nextInt();
-				studentToUpdate.setReservedSeatNumber(updatedReservedSeatNumber);
-				System.out.println("Enter Updated Seat Reservation Reason:");
-				String updatedReservedSeatReason = input.next();
-				studentToUpdate.setReservedSeatReason(updatedReservedSeatReason);
+//			System.out.println("Enter Updated Reserved Seat (Y/N):");
+//			String updatedReservedSeatInput = input.next();
+			if (reservedYn) {
+				studentToUpdate.setReservedSeatNumber(reservedNum);
+				studentToUpdate.setReservedSeatReason(reservedRs);
 			}
 
-			studentToUpdate.setReservedSeatStatus(updatedReservedSeatStatus);
+			studentToUpdate.setReservedSeatStatus(reservedYn);
 
 			saveStudentData();
 			System.out.println("Update success");
@@ -254,22 +253,27 @@ public class StudentManager {
 		}
 	}
 
-	private void searchStudent() {
-		System.out.println("Enter search ID:");
-		int searchID = input.nextInt();
-
+	public String searchStudent(int searchID) {
+//		System.out.println("Enter search ID:");
+//		int searchID = input.nextInt();
+		String studentsText = "";
 		 for (Student std : studentArray) {
 	         if (std.getsID() == searchID) {
 	      System.out.println(std.getsID() + " " + std.getsName() + " " + std.getsSex() + " " + std.getCurrentSeatNumber()
 	      + " " + std.isReservedSeatStatus()
 	      + " " + std.getReservedSeatReason());
-	            return;
+	      	studentsText += std.getsID() + " " + std.getsName() + " " + std.getsSex() + " " + std.getCurrentSeatNumber()
+		      + " " + std.isReservedSeatStatus()
+		      + " " + std.getReservedSeatReason();
+	            return studentsText;
 	         }
 	      }
 	      System.out.println("Not found");
+	      return "Not found";
 	}
 
-	private void displayStudents() {
+	public String displayStudents() {
+		String studentsText = "";
 		  for (int i=0; i<studentArray.size(); i++) {
 		         System.out.print(studentArray.get(i).getsID()+" ");
 		         System.out.print(studentArray.get(i).getsName()+" ");
@@ -277,9 +281,16 @@ public class StudentManager {
 		         System.out.print(studentArray.get(i).getCurrentSeatNumber()+" ");
 		         System.out.print(studentArray.get(i).isReservedSeatStatus()+" ");
 		         System.out.println(studentArray.get(i).getReservedSeatReason());
+		         studentsText += studentArray.get(i).getsID() + " ";
+		         studentsText += studentArray.get(i).getsName() + " ";
+		         studentsText += studentArray.get(i).getsSex() + " ";
+		         studentsText += studentArray.get(i).getCurrentSeatNumber() + " ";
+		         studentsText += studentArray.get(i).isReservedSeatStatus() + " ";
+		         studentsText += studentArray.get(i).getReservedSeatReason() + " ";
+		         studentsText += "\n";
 		      }
-
-
+		  
+		  return studentsText;
 	}
 
 	private boolean isIDExists(int id) {
@@ -290,4 +301,33 @@ public class StudentManager {
 		}
 		return false;
 	}
+	public void loadStudentDataFromFile(File file) {
+			try {
+		        BufferedReader reader = new BufferedReader(new FileReader(file));
+		        String line;
+
+		        while ((line = reader.readLine()) != null) {
+		            String[] data = line.split(" ");
+
+		            int id = Integer.parseInt(data[0]);
+		            String name = data[1];
+		            String sex = data[2];
+		            int presentTableNumber = Integer.parseInt(data[3]);
+		            int reservedSeatNumber = Integer.parseInt(data[4]);
+		            boolean reservedSeatStatus = Boolean.parseBoolean(data[5]);
+		            String reservedSeatReason = data[6];
+
+		            Student student = new Student(id, name, sex, presentTableNumber, reservedSeatNumber, reservedSeatStatus, reservedSeatReason);
+		            studentArray.add(student);
+		        }
+
+		        reader.close();
+		        System.out.println("Student data loaded successfully.");
+		    } catch (FileNotFoundException e) {
+		        System.out.println("File not found. No data loaded.");
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		        System.out.println("Error reading student data.");
+		    }
+	    }
 }

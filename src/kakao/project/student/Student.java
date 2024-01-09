@@ -60,7 +60,7 @@ public class Student {
 		this.reservedSeat = new ReservedSeat();
 	}
 
-	Student(int sID, String sName, String sSex,int currentSeatNumber, int reservedSeatNumber, boolean reservedSeatStatus, String reservedSeatReason) {
+	public Student(int sID, String sName, String sSex,int currentSeatNumber, int reservedSeatNumber, boolean reservedSeatStatus, String reservedSeatReason) {
 		this.sID = sID;
 		this.sName = sName;
 		this.sSex = sSex;
@@ -115,4 +115,3 @@ public class Student {
 
 	//*** Getter & Setter 끝 ***//
 }
-

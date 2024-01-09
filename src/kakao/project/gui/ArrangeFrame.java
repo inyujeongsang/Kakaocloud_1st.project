@@ -19,6 +19,7 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DropTarget;
@@ -35,9 +36,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JLabel;
 
@@ -48,6 +52,7 @@ public class ArrangeFrame extends JFrame {
 	private JTextField textField_Title;
 	private JButton[] buttonsArray; // 버튼 배열
 	
+	private StudentManager studentManager; // StudentManager 인스턴스 변수 추가
 	/**
 	 * Create the frame.
 	 */
@@ -67,13 +72,15 @@ public class ArrangeFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				//학생 정보 프레임 실행
 				StudentFrame studentFrame = new StudentFrame();
-    	        		studentFrame.setVisible(true);
-    	        		dispose();
+//				StudentManager sdtm = StudentManager.getInstance();
+//				sdtm.loadStudentData();
+    	        studentFrame.setVisible(true);
+    	        dispose();
 			}
 		});
 		peoples.setForeground(Color.BLACK);
 		peoples.setBackground(Color.BLACK);
-		peoples.setIcon(new ImageIcon("C:\\Users\\user\\Desktop\\1stProjectImage\\KakaoTalk_20240104_163010490_05.png"));
+		peoples.setIcon(new ImageIcon("lib/people.png"));
 		peoples.setBounds(10, 56, 55, 40);
 		contentPane.add(peoples);
 		
@@ -102,10 +109,11 @@ public class ArrangeFrame extends JFrame {
 		panel_2.add(textField_Title);
 		textField_Title.setColumns(13);
 		
+		studentManager = StudentManager.getInstance();
 		JButton play = new JButton("");
 		play.setBackground(Color.BLACK);
 		play.setForeground(Color.BLACK);
-		play.setIcon(new ImageIcon("C:\\Users\\user\\Desktop\\1stProjectImage\\KakaoTalk_20240104_163010490_01.png"));
+		play.setIcon(new ImageIcon("lib/play.png"));
 		play.setBounds(69, 56, 55, 40);
 		contentPane.add(play);
 		
@@ -135,7 +143,7 @@ public class ArrangeFrame extends JFrame {
 		});
 		fileSave.setForeground(Color.BLACK);
 		fileSave.setBackground(Color.BLACK);
-		fileSave.setIcon(new ImageIcon("C:\\Users\\user\\Desktop\\1stProjectImage\\KakaoTalk_20240104_163010490_03.png"));
+		fileSave.setIcon(new ImageIcon("lib/filesave.png"));
 		fileSave.setBounds(129, 56, 55, 40);
 		contentPane.add(fileSave);
 		
@@ -286,12 +294,6 @@ public class ArrangeFrame extends JFrame {
 		seatNumber_28.setBounds(666, 283, 95, 56);
 		panel_seat.add(seatNumber_28);
 		
-		JLabel door = new JLabel("");
-		door.setIcon(new ImageIcon("C:\\Users\\user\\Desktop\\1stProjectImage\\KakaoTalk_20240104_174820270.png"));
-		door.setHorizontalAlignment(SwingConstants.CENTER);
-		door.setBounds(-14, 233, 84, 117);
-		panel_seat.add(door);
-		
 		//버튼 배열 초기화
 		buttonsArray = new JButton[] {
 			seatNumber_1, seatNumber_2, seatNumber_3, seatNumber_4,
@@ -311,21 +313,46 @@ public class ArrangeFrame extends JFrame {
 	    }
 	    
 	    play.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//랜덤 배치 실행
-				StudentManager sdtm = StudentManager.getInstance();
-				ArrangeManager arrm = ArrangeManager.getInstance(StudentManager.getInstance().getStudents());
-				sdtm.loadStudentData();
-				arrm.allocateSeats();
-				fetchStudents(arrm);
-				repaint();
-				System.out.println("랜덤 배치 버튼 눌림");
-			}
-		});
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            // 랜덤 배치 실행
+	            StudentManager sdtm = StudentManager.getInstance();
+	            List<Student> students = sdtm.getStudents(); // StudentManager에서 학생 목록을 가져옵니다.
+
+	            if (students != null && !students.isEmpty()) { // 학생 목록이 비어있지 않은 경우에만 랜덤 배치를 실행합니다.
+	                ArrangeManager arrm = ArrangeManager.getInstance(students);
+	                arrm.allocateSeats();
+	                fetchStudents(arrm);
+	                repaint();
+	                System.out.println("랜덤 배치 버튼 눌림");
+			updateDataFile(arrm.getSeats());
+	            } else {
+	                System.out.println("학생 목록이 비어있습니다. 파일을 불러와주세요.");
+	            }
+	        }
+		public void updateDataFile(List<Arrange> seats) {
+	            try (PrintWriter writer = new PrintWriter(new File("Data.txt"))) {
+	               for (Arrange seat : seats) {
+	                  Student student = seat.getStudent();
+	                  if (student != null) {
+	                     // 데이터 형식: ID 이름 성별 현재 좌석번호 지정석번호 지정석 유무 지정석 사유
+	                     writer.println(student.getsID() + " " + student.getsName() + " " + student.getsSex() + " " + student.getCurrentSeatNumber() + " " + student.getReservedSeatNumber() + " " + student.isReservedSeatStatus() + " " + student.getReservedSeatReason() + " ...");
+	                  }
+	               }
+	            } catch (IOException e) {
+	               e.printStackTrace();
+	            }
+	         };
+	    });
 	    
 	}//ArrangeFrame()
 	
+	/* *********************************
+	    *    Drag & Drop START *************
+	    * 1. 드래그 앤 드롭으로 학생 정보를 좌석에 할당
+	    * 2. 좌석 정보는 변경되지 않고, 학생 정보만 교체되어야함.
+	    * 3. 학생 정보가 내부적으로 변경되면 GUI에도 반영되어야함.
+	    * **********************************/
 	// TransferHandler 클래스를 상속한 ButtonDragDropHandler 클래스
     class ButtonDragDropHandler extends TransferHandler {
     	// ButtonDragDropHandler 클래스의 생성자
@@ -338,6 +365,17 @@ public class ArrangeFrame extends JFrame {
         	// 부모 클래스의 exportAsDrag 메서드 호출
             super.exportAsDrag(comp, e, action);
         }
+	//인정이누나 작업 
+	@Override
+      	protected Transferable createTransferable(JComponent c) {
+         // 적절한 데이터 형식으로 데이터를 반환하도록 설정
+         if (c instanceof JButton) {
+            JButton button = (JButton) c;
+            String data = button.getText(); // 버튼의 텍스트를 데이터로 사용
+            return new StringSelection(data);
+         }
+         return null;
+      }
     }//ButtonDragDropHandler
     
     // 마우스 이벤트를 처리하는 MouseAdapter를 상속한 ButtonMouseListener 클래스
@@ -354,34 +392,85 @@ public class ArrangeFrame extends JFrame {
     }//ButtonMouseListener
     
  // 버튼이 놓인 위치에 따라 자리를 바꾸는 Drop 이벤트를 처리하는 리스너
-    class ButtonDropTargetListener extends DropTargetAdapter {
-        public void drop(DropTargetDropEvent evt) {
-        	// 드래그된 데이터를 가져옴
+   class ButtonDropTargetListener extends DropTargetAdapter {
+      @Override
+      public void drop(DropTargetDropEvent evt) {
+         try {
             Transferable transferable = evt.getTransferable();
-            // 가져온 데이터가 문자열인지 확인
             if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-                try {
-                	// 드래그된 데이터 문자열로 변환
-                    String data = (String) transferable.getTransferData(DataFlavor.stringFlavor);
-                    // 드래그된 버튼과 이벤트가 발생한 현재 버튼을 가져옴
-                    JButton sourceButton = (JButton) evt.getTransferable().getTransferData(DataFlavor.stringFlavor);
-                    JButton currentButton = (JButton) evt.getDropTargetContext().getComponent();
-                    // 버튼 텍스트를 서로 교환
-                    String temp = currentButton.getText();
-                    currentButton.setText(sourceButton.getText());
-                    sourceButton.setText(temp);
-                } catch (UnsupportedFlavorException | IOException ex) {
-                    ex.printStackTrace();
-                }
+               // 드래그된 좌석 번호 가져오기
+               String sourceSeatNumber = (String) transferable.getTransferData(DataFlavor.stringFlavor);
+               JButton targetButton = (JButton) evt.getDropTargetContext().getComponent();
+               String targetSeatNumber = targetButton.getText();
+
+               // 학생 정보 교환 로직
+               exchangeStudentInformation(sourceSeatNumber, targetSeatNumber);
+
+               // 학생 데이터 다시 로드하고 화면 업데이트
+               StudentManager.getInstance().loadStudentData();
+               fetchStudents(ArrangeManager.getInstance(StudentManager.getInstance().getStudents()));
+               repaint();
+            } else {
+               System.out.println("Unsupported data type.");
             }
-        }
-    }//ButtonDropTargetListener
-    
-    public void fetchStudents(ArrangeManager arrm){
-    	for(int i=1; i < arrm.getSeats().size(); i++) {    	
-    		if(arrm.getSeats().get(i).getStudent() != null) {
-    			buttonsArray[arrm.getSeats().get(i).getSeatNum()-1].setText(arrm.getSeats().get(i).getStudent().getsName());    			
-    		}
-    	}
-    }
+         } catch (UnsupportedFlavorException | IOException ex) {
+            ex.printStackTrace();
+         }
+      }
+   }            
+private void exchangeStudentInformation(String sourceSeatNumber, String targetSeatNumber) {
+         List<Student> students = new ArrayList<>();
+         int realSourceSeatNumber = 0; // 실제 소스 좌석 번호를 저장할 변수
+         int realTargetSeatNumber = 0; // 실제 타겟 좌석 번호를 저장할 변수
+         // 파일에서 학생 정보 읽기
+         try (Scanner scanner = new Scanner(new File("Data.txt"))) {
+            while (scanner.hasNextLine()) {
+               String line = scanner.nextLine();
+               String[] data = line.split(" ");
+               // 사용자 이름이 일치하는지 확인
+               if (data[1].equals(sourceSeatNumber)) {
+                  realSourceSeatNumber = Integer.parseInt(data[3]); // 실제 소스 좌석 번호
+               }
+               if (data[1].equals(targetSeatNumber)) {
+                  realTargetSeatNumber = Integer.parseInt(data[3]); // 실제 타겟 좌석 번호
+               }
+            }
+
+            // 학생 객체 생성 및 데이터 설정
+            Student student = new Student();
+            // ... 학생 데이터 설정 ...
+            students.add(student);
+         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+         }
+
+         // 좌석 정보 교환
+         if (students.size() == 2) {
+            int tempSeat = students.get(0).getCurrentSeatNumber();
+            students.get(0).setCurrentSeatNumber(students.get(1).getCurrentSeatNumber());
+            students.get(1).setCurrentSeatNumber(tempSeat);
+         }
+
+         // 파일에 업데이트된 정보 저장
+         try (PrintWriter writer = new PrintWriter(new File("Data.txt"))) {
+            for (Student student : students) {
+               // 파일에 학생 정보 작성
+               writer.println(student.getsID() + " " + student.getsName() + " " + student.getsSex() + " " + student.getCurrentSeatNumber() + " ...");
+            }
+         } catch (IOException e) {
+            e.printStackTrace();
+         }
+      }
+//
+      /* *********************************
+       *    Drag & Drop END *************
+       * **********************************/
+
+   public void fetchStudents(ArrangeManager arrm){
+      for(int i=1; i < arrm.getSeats().size(); i++) {
+         if(arrm.getSeats().get(i).getStudent() != null) {
+            buttonsArray[arrm.getSeats().get(i).getSeatNum()-1].setText(arrm.getSeats().get(i).getStudent().getsName());
+         }
+      }
+   }
 }
