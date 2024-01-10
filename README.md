@@ -47,7 +47,8 @@
 
 
 ### 간트차트
-<img width="1186" alt="1차팀플_간트차트_최종" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/8959e8ea-ade5-4cb1-ab46-92f1483203e6">
+<img width="1183" alt="1차팀플_간트차트_최종" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/40edc07a-f6f9-4dba-8fb7-26e4420447a7">
+
 
 저희의 첫 번째 간트 차트 작성은 원활한 프로젝트 진행을 위해 계획대로 진행하는 것을 목표로 합니다.
 
