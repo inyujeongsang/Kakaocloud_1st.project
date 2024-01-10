@@ -80,7 +80,8 @@
 ### 와이어프레임을 기반으로 UI/UX 제작
 
 |학생정보관리|랜덤좌석배치프로그램|
-|![학생정보관리_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/d0334766-4af9-4c07-8621-46a3e6d252a5)||![자리배치_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/8b86f8e1-79d4-4d87-98e7-8db3106f6b53)|
+|------|---|
+|![학생정보관리_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/d0334766-4af9-4c07-8621-46a3e6d252a5)||![자리배치_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/8b86f8e1-79d4-4d87-98e7-8db3106f6b53)|![자리배치_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/8b86f8e1-79d4-4d87-98e7-8db3106f6b53)|
 
 
 ### UI/UX를 기반으로 JAVA GUI 제작
