@@ -15,6 +15,7 @@
 - 프로그램 설명
 - 프로그램 운영 방식
 
+
 ## 개요
 - 프로그램 이름: "자리바꿔보" 조
 - 프로젝트 지속시간: 2023.12.20 - 2024.01.09
@@ -38,8 +39,12 @@
 ### 요구사항 정의서
 <img width="1169" alt="스크린샷 2024-01-05 오전 12 40 37" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/45022262-2b64-4e83-b42c-f00f5ec1b994">
 
+
+
 ### USECASE DIAGRAM
 ![1차팀플_유스케이스다이어그램](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/11028bdf-7c1a-45fd-8929-90fdd636d79e)
+
+
 
 ### 간트차트
 <img width="1186" alt="1차팀플_간트차트_최종" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/8959e8ea-ade5-4cb1-ab46-92f1483203e6">
@@ -51,6 +56,8 @@
 
 ### CLASS DIAGRAM
 ![kakao1stClassDiagram](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/a7346416-e5a3-44ff-991d-7db664896c9d)
+
+
 
 
 ### CLASS 역할 설명 (개요)
@@ -72,10 +79,12 @@
    : 좌석 그 자체
 
 
+
 ### 와이어프레임
 <img width="792" alt="스크린샷 2024-01-04 오후 5 37 10" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/b146c65f-07d4-4605-8730-b6ff8fc3b40f">
 
 와이어프레임 제작을 통해 두개의 UI가 필요하다는 결론 도출
+
 
 ### 와이어프레임을 기반으로 UI/UX 제작
 
@@ -83,15 +92,13 @@
 |------|---|
 |![학생정보관리_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/d0334766-4af9-4c07-8621-46a3e6d252a5)|![자리배치_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/8b86f8e1-79d4-4d87-98e7-8db3106f6b53)|
 
-### UI/UX를 기반으로 JAVA GUI 제작
-|학생정보관리|랜덤좌석배치프로그램|
-|------|---|
-|![자리배치_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/8b86f8e1-79d4-4d87-98e7-8db3106f6b53)|
 
 
 ### 프로그램 실행
 
 JAVA GUI 버튼들을 통해 기능 구현
+
+
 
 ### 프로젝트 팀원
 ![팀원사진](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/1901a511-1d18-4e14-8cfb-95f515ecbd0c)
