@@ -36,7 +36,7 @@ public class Student {
 	public int getReservedSeatNumber() {
 		return reservedSeatNumber;
 	}
-
+	public boolean getReservedSeatStatus() { return reservedSeatStatus; }
 	public void setReservedSeatNumber(int reservedSeatNumber) {
 		this.reservedSeatNumber = reservedSeatNumber;
 	}
@@ -97,6 +97,7 @@ public class Student {
 		this.sSex = sSex;
 	}
 
+
 	public SeatAssignment getSeatAssignment(){
 		return seatAssignment;
 	}
@@ -114,4 +115,9 @@ public class Student {
 	}
 
 	//*** Getter & Setter 끝 ***//
+
+	//좌석 번호 업데이트 메서드
+	public void updateSeatNumber(int newSeatNumber){
+		this.currentSeatNumber = newSeatNumber;
+	}
 }
