@@ -30,7 +30,7 @@
 
 - 새로운 자리 앉기 : 공평한 자리 배정 시스템을 추구하여 직전에 배정된 자리에 다시 배치되지 않도록 설계하였습니다. 
 
--  외톨이 방지 : 총 구성원 중 단 한분도 혼자 앉는 일이 없도록 설계하였습니다. 두 곳의 빈자리는 맨 뒤에 배치하여 모두의 공용 공간으로 활용할 계획입니다.
+- 외톨이 방지 : 총 구성원 중 단 한분도 혼자 앉는 일이 없도록 설계하였습니다. 두 곳의 빈자리는 맨 뒤에 배치하여 모두의 공용 공간으로 활용할 계획입니다.
 
 
 ## 프로그램 운영 방식
@@ -39,10 +39,10 @@
 <img width="1169" alt="스크린샷 2024-01-05 오전 12 40 37" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/45022262-2b64-4e83-b42c-f00f5ec1b994">
 
 ### USECASE DIAGRAM
-<img width="776" alt="스크린샷 2024-01-05 오전 12 40 55" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/ffa10ca1-9896-4a23-878a-ce0fd4fc4e58">
+![1차팀플_유스케이스다이어그램](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/11028bdf-7c1a-45fd-8929-90fdd636d79e)
 
 ### 간트차트
-<img width="1185" alt="스크린샷 2024-01-04 오후 11 45 00" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/8c4fb585-ddd8-45e6-9878-634ca06644e1">
+<img width="1186" alt="1차팀플_간트차트_최종" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/8959e8ea-ade5-4cb1-ab46-92f1483203e6">
 
 저희의 첫 번째 간트 차트 작성은 원활한 프로젝트 진행을 위해 계획대로 진행하는 것을 목표로 합니다.
 
@@ -50,11 +50,29 @@
 
 
 ### CLASS DIAGRAM
-<img width="526" alt="image" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/29bc3795-3c5c-4c4f-ae46-40ce23997d12">
+![kakao1stClassDiagram](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/a7346416-e5a3-44ff-991d-7db664896c9d)
+
+
+### CLASS 역할 설명 (개요)
+![1차팀플클래스다이어그램_러프하게 (2)](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/ffb260c7-f7c9-4dd9-a58a-6c2b37688240)
+
+1. ArrangeFrame
+   : 자리배치 GUI 이벤트 관리 (드래그&드랍), 버튼 동작 등
+2. StudentFrame
+   : 학생정보관리 GUI 버튼 기능 관리
+3. Student
+   : 학생정보를 담는다.
+4. SeatAssignment
+   : 개별 자리 정보 관리, 현재 자리번호, 이전 자리번호를 추적할 수 있다.
+5. ReservedSeat
+   : 지정석 정보 관리
+6. ArrangeManager
+   : 좌석 관리 배치 메서드 관리
+7. Arrange
+   : 좌석 그 자체
 
 
 ### 와이어프레임
-
 <img width="792" alt="스크린샷 2024-01-04 오후 5 37 10" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/b146c65f-07d4-4605-8730-b6ff8fc3b40f">
 
 와이어프레임 제작을 통해 두개의 UI가 필요하다는 결론 도출
@@ -63,18 +81,22 @@
 
 |학생정보관리|랜덤좌석배치프로그램|
 |------|---|
-|![image](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/130035930/e2ac7963-9a21-4fb7-bd71-db8e026064cd)|<img width="920" alt="스크린샷 2024-01-04 오후 11 51 05" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/92003065-feea-48c6-9ea1-ee7be444534a">|
+|![학생정보관리_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/d0334766-4af9-4c07-8621-46a3e6d252a5)|
 
 
 ### UI/UX를 기반으로 JAVA GUI 제작
 |학생정보관리|랜덤좌석배치프로그램|
 |------|---|
-|![KakaoTalk_Photo_2024-01-04-18-17-04](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/cd38e80e-0e6a-442e-97ed-c5e3c9e1fe26)|![KakaoTalk_Photo_2024-01-04-18-14-52](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/b84d8a43-c5e3-49fc-b260-1b40e9117c9a)|
+|![자리배치_UI](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/8b86f8e1-79d4-4d87-98e7-8db3106f6b53)|
 
 
 ### 프로그램 실행
 
 JAVA GUI 버튼들을 통해 기능 구현
+
+### 프로젝트 팀원
+![팀원사진](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/1901a511-1d18-4e14-8cfb-95f515ecbd0c)
+
 
 
 
