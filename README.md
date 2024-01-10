@@ -37,7 +37,8 @@
 ## 프로그램 운영 방식
 
 ### 요구사항 정의서
-<img width="1169" alt="스크린샷 2024-01-05 오전 12 40 37" src="https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/154866994/45022262-2b64-4e83-b42c-f00f5ec1b994">
+![1차팀플_요구사항정의서](https://github.com/inyujeongsang/Kakaocloud_1st.project/assets/104670277/fedcb16b-813a-4887-9e9b-1375a8d3608c)
+
 
 
 
