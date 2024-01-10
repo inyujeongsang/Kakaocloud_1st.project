@@ -25,6 +25,9 @@ public class StudentManager {
 
 	private static StudentManager instance = null;
 	private ArrayList<Student> studentArray;
+	public void setStudentArray(ArrayList<Student> studentArray) {
+		this.studentArray = studentArray;
+	}
 	Scanner input = new Scanner(System.in);
 	
 	private StudentManager() {

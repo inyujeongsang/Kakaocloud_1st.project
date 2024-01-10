@@ -3,12 +3,11 @@ package kakao.project.arrange;
 import kakao.project.student.SeatAssignment;
 import kakao.project.student.Student;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ArrangeManager implements SeatColor{
+public class ArrangeManager{
     /*ArrangeManager 클래스의 역할
     1. 좌석관리와 학생 배치를 담당한다.
     - 자리 초기화 : 좌석을 초기화하여 빈자리를 만든다.
@@ -48,32 +47,32 @@ public class ArrangeManager implements SeatColor{
 
     //자리 초기화
     private void initializeSeats() {
-    	if(seats.isEmpty()) {
-    		seats.add(null); //0번인덱스를 null값으로 채움. 인덱스와 학생 자리번호를 일치시켜주기 위함(직관적으로)
+        if(seats.isEmpty()) {
+            seats.add(null); //0번인덱스를 null값으로 채움. 인덱스와 학생 자리번호를 일치시켜주기 위함(직관적으로)
 
             for(int i = 1; i <= SEAT_NUMBER; i++){
                 seats.add(new Arrange(i)); //1부터 시작하는 자리번호
             }
-    	}else {
-    		for(int i = 1; i<=SEAT_NUMBER; i++) {
-    			seats.set(i, new Arrange(i));    			
-    		}
-    	}
-        
+        }else {
+            for(int i = 1; i<=SEAT_NUMBER; i++) {
+                seats.set(i, new Arrange(i));
+            }
+        }
+
     }
 
     //자리배치 메서드
     public void allocateSeats() {
-    	initializeSeats();
+        initializeSeats();
         // 지정석 학생 우선 배치
         for (Student student : students) {
-        	if(student != null) {
-        		if(student.isReservedSeatStatus()) { //지정석여부 체크
+            if(student != null) {
+                if(student.isReservedSeatStatus()) { //지정석여부 체크
                     int reservedSeatNum = student.getReservedSeatNumber();
                     seats.get(reservedSeatNum).assignStudent(student);
                     System.out.println("Assigned student to reserved seat: " + student.getsName() + " to seat number " + reservedSeatNum);
-                 }
-        	} 
+                }
+            }
         }
         System.out.println("---------------------------------");
         //이전 자리 및 짝꿍을 고려한 랜덤 배치 로직
@@ -117,7 +116,7 @@ public class ArrangeManager implements SeatColor{
         Collections.shuffle(availableSeats);//가능한 자리들을 랜덤으로 섞음.
         for(Arrange seat : availableSeats){
             if (!checkPreviousSeat(seat, student)) {
-                    return seat;
+                return seat;
             }
         }
         return null; //적합한 자리 없는 경우 null 반환.
@@ -174,23 +173,5 @@ public class ArrangeManager implements SeatColor{
     public List<Arrange> getSeats() {
         return seats;
     }
-
-	@Override
-	public void setMenSeatColor(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.fillOval(0,0,CIRCLE_SIZE,CIRCLE_SIZE);
-	}
-
-	@Override
-	public void setWomenSeatColor(Graphics g) {
-		g.setColor(Color.RED);
-		g.fillOval(0,0,CIRCLE_SIZE,CIRCLE_SIZE);		
-	}
-
-	@Override
-	public void setReaderSeatColor(Graphics g) {
-		g.setColor(Color.YELLOW);
-		g.fillOval(0,0,CIRCLE_SIZE,CIRCLE_SIZE);
-	}
 
 }
